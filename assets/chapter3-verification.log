@@ -1,0 +1,10 @@
+Model 1: n=6, min eig(B)=3.07e-06, Jdot residual=7.56e-10
+Model 2: n=7, min eig(B)=0.000952, Jdot residual=3.3e-10
+Compliance equilibrium, direct/inner dynamics and reference derivatives: PASS
+Redundancy: J*an=6.93e-13, N*B^-1*J'=3.48e-13, Lyapunov residual=7.55e-15
+Controller 1: 0.3 s closed-loop PASS, steps=237, final |p-pd|=0.00259 m
+Controller 2: 0.3 s closed-loop PASS, steps=94, final |p-pd|=0.00213 m
+Controller 3: 0.3 s closed-loop PASS, steps=99, final |p-pd|=0.00213 m
+Null-space objective: 0.005 -> 0.0043475
+Controller 4: 0.3 s closed-loop PASS, steps=170, final |p-pd|=0.00213 m
+ALL CHAPTER 3 CHECKS PASSED
