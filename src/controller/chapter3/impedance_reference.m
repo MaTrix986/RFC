@@ -1,6 +1,5 @@
 function [c, dx] = impedance_reference(x, ref, h, cfg)
     % (3.25)、(3.72)-(3.73)：外环状态显式交给 ODE 求解器积分。
-    % 无 persistent 状态，ODE 的试探/回退调用不会改变控制器。
     pc = x(1:3);
     dpc = x(4:6);
     Q = x(7:10);

@@ -14,7 +14,6 @@ function [tau, out] = impedance_control(robot, q, dq, ref, h, cfg)
                                + cfg.Ko*(phid - phi) - T.'*h(4:6));
     ao = T*ddphi + dT*dphi;
 
-    assert(size(s.J, 2) == 6, '直接阻抗接口要求六个关节。');
     alpha = s.J \ ([ap; ao] - s.dJ*dq);
     tau = inverseDynamics(robot, q, dq, alpha) + s.J.'*h;
 
