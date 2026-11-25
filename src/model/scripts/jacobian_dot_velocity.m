@@ -1,10 +1,9 @@
 function [bias,Jdot] = jacobian_dot_velocity(robot,q,dq)
-    % IRB1300 的六转动关节串联链，返回基坐标系的 Jdot*dq，顺序 [线;角]。
-    % URDF 的转动关节子连杆原点即关节原点。
-    H = getTransform(robot,q,'link7');
-    pe = H(1:3,4);
-    Jw = geometricJacobian(robot,q,'link7'); % 工具箱顺序 [角;线]
-    ve = Jw(4:6,:)*dq;
+    
+    H = getTransform(robot, q, 'link7');
+    pe = H(1:3, 4);
+    Jw = geometricJacobian(robot, q, 'link7'); % 工具箱顺序 [角;线]
+    ve = Jw(4:6, :) * dq;
     Jdot = zeros(6,6);
     for i = 1:6
         body = robot.BodyNames{i};
