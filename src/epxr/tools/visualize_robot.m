@@ -1,4 +1,5 @@
-function visualize_robot(t, X)
+function visualize_robot(t, X, filename)
+    if nargin < 3, filename = 'robot_animation.mp4'; end
     robot = load_irb1300();
     root = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
     out = fullfile(root, 'res');
@@ -7,7 +8,7 @@ function visualize_robot(t, X)
     fps = 20;
     ti = linspace(t(1), t(end), max(2, round((t(end)-t(1))*fps)+1));
     Q = interp1(t, X(:,1:6), ti);
-    video = VideoWriter(fullfile(out, 'robot_animation.mp4'), 'MPEG-4');
+    video = VideoWriter(fullfile(out, filename), 'MPEG-4');
     video.FrameRate = fps; open(video);
     cleanup = onCleanup(@() close(video));
 
