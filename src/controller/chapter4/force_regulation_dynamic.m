@@ -13,5 +13,9 @@ function [tau, dx] = force_regulation_dynamic(robot, q, dq, fd, mud, h, x, cfg)
 
     alpha = s.J \ (a - s.dJ*dq);
     tau = inverseDynamics(robot, q, dq, alpha) + s.J.'*h;
-    dx = [df; dmu];
+    if norm(h(1:3)) > 1e-3
+        dx = [df; dmu];
+    else
+        dx = zeros(6, 1);
+    end
 end

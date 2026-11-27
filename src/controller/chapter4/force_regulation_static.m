@@ -11,5 +11,9 @@ function [tau, dx] = force_regulation_static(robot, q, dq, fd, mud, h, x, cfg)
              T.' \ (cfg.KPo*(phic - phi)) + mud];
 
     tau = s.J.'*gamma - cfg.Kq*dq + gravityTorque(robot, q);
-    dx = [df; dmu];
+    if norm(h(1:3)) > 1e-3
+        dx = [df; dmu];
+    else
+        dx = zeros(6, 1);
+    end
 end
