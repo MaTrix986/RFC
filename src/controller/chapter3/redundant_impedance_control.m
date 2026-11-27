@@ -1,11 +1,11 @@
 function [tau, dx, out] = redundant_impedance_control(robot, q, dq, ref, h, x, cfg)
     % 四元数内环阻抗 + RFC (2.78)、(2.83)-(2.91)。
-    s = rfc_state(robot, q, dq, cfg.tip);
+    s = rfc_state(robot, q, dq, cfg.tip, true);
     n = numel(q);
     assert(n > 6, '冗余接口要求多于六个关节。');
 
     [c, dx] = impedance_reference(x, ref, h, cfg);
-    a = rfc_inner_acceleration(s, c, cfg);
+    a = rfc_motion_acceleration(s, c, cfg);
 
     B = massMatrix(robot, q);
     C = coriolis_matrix(robot, q, dq);

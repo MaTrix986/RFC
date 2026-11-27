@@ -1,6 +1,6 @@
 function [tau, out] = impedance_control(robot, q, dq, ref, h, cfg)
     % 直接阻抗：(3.17)-(3.21)，XYZ 欧拉角；非冗余六自由度。
-    s = rfc_state(robot, q, dq, cfg.tip);
+    s = rfc_state(robot, q, dq, cfg.tip, true);
     [phi, T, dT] = rfc_xyz(s.R, s.v(4:6));
     [phid, Td, dTd] = rfc_xyz(ref.R, ref.omega);
 
